@@ -1,4 +1,4 @@
-#!/Users/adamclune/Documents/react_projects/django-react-project/env/bin/python3.11
+#!/Users/adamclune/Documents/react_projects/django-react-pt2/env/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
