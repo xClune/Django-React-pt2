@@ -1,11 +1,11 @@
-import Form from "../components/Form"
+import LoginForm from "../components/LoginForm.jsx"
 import Header from "../components/Header"
 
 function Login() {
     return (
     <>
         <Header />
-        <Form route="/api/token/" method="login" />
+        <LoginForm route="/api/token/" method="login" />
     </>
     )
 }

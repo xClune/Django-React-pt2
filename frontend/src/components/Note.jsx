@@ -1,11 +1,10 @@
 
-
 function Note({note, onDelete}) {
 
     const formattedDate = new Date(note.created_at).toLocaleDateString("en-US")
 
     return (
-        <div className='note-container mr-10 border-double border-4 border-blue-400 rounded p-5 ml-10 mt-10'>
+        <div className='note-container mr-10 border-double border-4 border-blue-400 bg-blue-300 rounded p-5 ml-10 mt-10'>
             <p className="note-title">{note.title}</p>
             <p className="body-area">{note.body_area}</p>
             <p className="note-content">{note.content}</p>
