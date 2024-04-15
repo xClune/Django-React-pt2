@@ -2,7 +2,7 @@ import { useState } from 'react'
 import api from '../api'
 
 function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
-    const [bodyArea, setBodyArea] = useState("Full Body")
+    const [bodyArea, setBodyArea] = useState("Full-body")
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
 
@@ -54,13 +54,13 @@ function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
                             setBodyArea(e.target.value)
                         }}
                     >
-                        <option value="full-body">Full Body</option>
-                        <option value="legs">Legs</option>
-                        <option value="abs">Abs</option>
-                        <option value="chest">Chest</option>
-                        <option value="back">Back</option>
-                        <option value="shoulders">Shoulders</option>
-                        <option value="arms">Arms</option>
+                        <option value="Full-body">Full Body</option>
+                        <option value="Legs">Legs</option>
+                        <option value="Abs">Abs</option>
+                        <option value="Chest">Chest</option>
+                        <option value="Back">Back</option>
+                        <option value="Shoulders">Shoulders</option>
+                        <option value="Arms">Arms</option>
                     </select>
                     <br />
                     <label htmlFor="content">Content:</label>
