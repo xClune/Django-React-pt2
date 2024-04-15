@@ -6,6 +6,7 @@ import WorkoutForm from '../components/WorkoutForm'
 
 function Home() {
     const [notes, setNotes] = useState([])
+    const [newNoteView, setNewNoteView] = useState(false)
 
     const getNotes = () => {
         api
@@ -17,10 +18,10 @@ function Home() {
 
     return (
         <>
-            <Header />
-            <div className='main flex items-center flex-col'>
-                <NotesList notes={ notes } getNotes={ getNotes }/>
-                <WorkoutForm getNotes={ getNotes }/>
+            <Header setNewNoteView={setNewNoteView}/>
+            <div className='main relative'>
+                <WorkoutForm getNotes={ getNotes } newNoteView={newNoteView} setNewNoteView={setNewNoteView}/>
+                <NotesList notes={ notes } getNotes={ getNotes }/>   
             </div>
         </>
     );

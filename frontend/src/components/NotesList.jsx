@@ -19,12 +19,10 @@ function NotesList ({notes, getNotes}) {
     }
 
     return (
-        <div className='notes-section w-full'>
-            <div className="notes-tray flex flex-row">
+        <div className='notes-section w-full grid grid-cols-7 gap-1'>
                 {notes.map((note) => (
                     <Note note={note} onDelete={deleteNote} key={note.id} />
                 ))}
-            </div>
         </div>
     )
 
