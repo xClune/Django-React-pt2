@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet'
 import api from '../api'
 import Header from '../components/Header'
 import NotesList from '../components/NotesList';
@@ -18,6 +19,12 @@ function Home() {
 
     return (
         <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Gym Planner</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+            </Helmet>
+
             <Header setNewNoteView={setNewNoteView}/>
             <div className='main relative'>
                 <WorkoutForm getNotes={ getNotes } newNoteView={newNoteView} setNewNoteView={setNewNoteView}/>

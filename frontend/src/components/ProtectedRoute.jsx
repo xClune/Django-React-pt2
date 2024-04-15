@@ -15,7 +15,7 @@ function ProtectedRoute({children}) {
         auth().catch(() => setIsAuthorized(false))
     }, []) 
 
-    // tries refresh token 
+    // tries refresh token
     // if success sets new ACCESS_TOKEN
     // else authorised set to false
     const refreshToken = async () => {
@@ -61,7 +61,7 @@ function ProtectedRoute({children}) {
     if(isAuthorized === null) {
         return <div>Loading...</div>
     }
-
+    
     return isAuthorized ? children : <Navigate to="/login" />
 }
 

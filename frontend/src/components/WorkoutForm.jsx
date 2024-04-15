@@ -24,7 +24,12 @@ function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
     } else {
         return (
             <>
-                <form onSubmit={createNote} className='absolute left-1/3 top-1/4 bg-blue-200 p-10 rounded'>
+                <form onSubmit={createNote} className='bg-blue-200 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2'>
+                    <button 
+                    className='absolute right-2 top-1' 
+                    onClick={() => {setNewNoteView(false)}}>
+                        x
+                    </button>
                     <label htmlFor="title">Title:</label>
                     <br />
                     <input
