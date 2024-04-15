@@ -14,7 +14,9 @@ function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
                 if (!res.status === 201) alert('Failed to create note.')
                 getNotes();
                 setNewNoteView(false);
-
+                setBodyArea("Full-body");
+                setContent("");
+                setTitle("");
             })
             .catch((error) => alert(error))
     }
@@ -27,7 +29,12 @@ function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
                 <form onSubmit={createNote} className='bg-blue-200 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2'>
                     <button 
                     className='absolute right-2 top-1' 
-                    onClick={() => {setNewNoteView(false)}}>
+                    onClick={() => {
+                        setNewNoteView(false);
+                        setBodyArea("Full-body");
+                        setContent("");
+                        setTitle("");
+                        }}>
                         x
                     </button>
                     <label htmlFor="title">Title:</label>

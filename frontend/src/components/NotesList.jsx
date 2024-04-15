@@ -22,11 +22,11 @@ function NotesList ({notes, getNotes}) {
 
     return (
         <>
-            <div className="category grid grid-cols-[repeat(auto-fill,minmax(150px,170px))] gap-2 p-10">
+            <div className="category grid grid-cols-[repeat(auto-fill,minmax(150px,170px))] gap-2 ml-10 mt-5">
                 {categories.map((category) => 
-                <div className='grid grid-cols-[repeat(1,minmax(150px,170px))] gap-2 p-10'
+                <div className='grid grid-cols-[repeat(1,minmax(150px,170px))] gap-2 self-start'
                 key={category}>
-                    <div className='p-3 self-center justify-self-center text-2xl w-full border-2 border-black'>{category}
+                    <div className='p-3 self-center justify-self-center text-2xl w-full border-2 border-blue-400 bg-white-400 text-blue-400 rounded-lg'>{category}
                     </div>
                     <div>
                         {notes.filter((note) => note.body_area == category).map((note) => (

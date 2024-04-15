@@ -26,7 +26,7 @@ function Home() {
             </Helmet>
 
             <Header setNewNoteView={setNewNoteView}/>
-            <div className='main relative'>
+            <div className='main relative m-0 p-0'>
                 <WorkoutForm getNotes={ getNotes } newNoteView={newNoteView} setNewNoteView={setNewNoteView}/>
                 <NotesList notes={ notes } getNotes={ getNotes }/>   
             </div>

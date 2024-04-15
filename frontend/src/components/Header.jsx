@@ -1,5 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 
 function Header ({setNewNoteView}) {
+    const navigate = useNavigate()
+
+    // track logged in status and adjust header to suit.
 
     return (
         <>
@@ -17,18 +21,34 @@ function Header ({setNewNoteView}) {
                 transition-all ease-in duration-200">
                     Gym Planner
                 </div>
-                <button 
-                className="
-                text-white font-medium bg-blue-700 
-                py-2.5 px-5 mb-10 ml-10
-                text-center text-sm w-auto 
-                hover:bg-blue-800 
-                focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg
-                sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
-                dark:bg-blue-600 dark:hover:bg-blue-300 dark:focus:ring-blue-800 mr-10"
-                onClick={() => {setNewNoteView(true)}}>
-                    Add Plan
-                </button>
+                <div className="buttons flex flex-row items-center justify-end">
+                    <button 
+                    className="
+                    text-white font-medium bg-blue-700 
+                    py-2.5 px-5 mb-10 ml-10
+                    text-center text-sm w-auto 
+                    hover:bg-blue-800 
+                    focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg
+                    sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
+                    dark:bg-blue-600 dark:hover:bg-blue-300 dark:focus:ring-blue-800 mr-10"
+                    onClick={() => {setNewNoteView(true)}}>
+                        Add Plan
+                    </button>
+                    <button 
+                    className="
+                    text-white font-medium bg-blue-700 
+                    py-2.5 px-5 mb-10 ml-10
+                    text-center text-sm w-auto 
+                    hover:bg-blue-800 
+                    focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg
+                    sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
+                    dark:bg-blue-600 dark:hover:bg-blue-300 dark:focus:ring-blue-800 mr-10"
+                    onClick={() => {
+                        navigate('/login')
+                    }}>
+                        Logout
+                    </button>
+                </div>
             </header>
         </>
     )
