@@ -22,12 +22,12 @@ function Header ({setNewNoteView}) {
             flex flex-col items-center
             bg-stone-700 border-b-2 border-gray-200 
             shadow-lg shadow-gray-200
-            sm:h-18 sm:justify-between sm:flex sm:flex-row`}>
-                <div className={`title 
-                text-white font-extrabold text-3xl 
+            sm:h-24 sm:justify-between sm:flex sm:flex-row py-1`}>
+                <div className={`title flex flex-row items-center
+                text-white font-extrabold text-2xl 
                 mx-20 my-10
-                sm:text-4xl
-                md:text-5xl
+                sm:text-3xl
+                md:text-4xl
                 transition-all ease-in duration-200`}>
                     <svg width="120" height="87" viewBox="0 0 120 87" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="Frame 2" className='group'>
@@ -39,13 +39,14 @@ function Header ({setNewNoteView}) {
                             </g>
                         </g>
                     </svg>
+                    TrainSense
                 </div>
                 <div className={`buttons  flex flex-row items-center justify-end ${hidden}`}>
                     <button 
                     className={`
                     text-white font-medium bg-stone-700 
                     py-2.5 px-5 mb-10 ml-10
-                    text-center text-sm w-auto 
+                    text-center text-xs sm:text-sm w-auto 
                     hover:bg-stone-800 
                     focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
                     sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
