@@ -19,7 +19,7 @@ function Note({note, onDelete, z}) {
                 hidden == '' ? 'see less' : 'see more'
             }</a>
             <button 
-            className={`delete-note form-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm mt-2 w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-red-600 dark:focus:ring-blue-800 z-${z}`} 
+            className={`delete-note form-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm mt-2 px-1 py-1 text-center dark:bg-blue-600 dark:hover:bg-red-600 dark:focus:ring-blue-800 z-${z}`} 
             onClick={() => {
                 onDelete(note.id)
             }}>Delete

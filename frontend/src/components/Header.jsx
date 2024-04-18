@@ -1,9 +1,19 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react' 
 
 function Header ({setNewNoteView}) {
     const navigate = useNavigate()
+    const { pathname } = useLocation();
 
-    // track logged in status and adjust header to suit.
+    const [hidden, setHidden] = useState('');
+
+    useEffect(() => {
+        if (pathname === '/') {
+            setHidden('');
+        } else {
+            setHidden('hidden')
+        }
+    }, [])
 
     return (
         <>
@@ -21,7 +31,7 @@ function Header ({setNewNoteView}) {
                 transition-all ease-in duration-200">
                     Gym Planner
                 </div>
-                <div className="buttons flex flex-row items-center justify-end">
+                <div className={`buttons  flex flex-row items-center justify-end ${hidden}`}>
                     <button 
                     className="
                     text-white font-medium bg-blue-700 
@@ -32,7 +42,7 @@ function Header ({setNewNoteView}) {
                     sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
                     dark:bg-blue-600 dark:hover:bg-blue-300 dark:focus:ring-blue-800 mr-10"
                     onClick={() => {setNewNoteView(true)}}>
-                        Add Plan
+                        Add New
                     </button>
                     <button 
                     className="
