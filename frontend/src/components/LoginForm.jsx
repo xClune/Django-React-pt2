@@ -32,6 +32,13 @@ function LoginForm ({route, method}) {
         }
     }
 
+    const switchPage = () => {
+        if (method === "login"){navigate('/register')}
+        else {navigate('/login')}
+    }
+
+
+
     return (
         <form onSubmit={handleSubmit} 
         className='max-w-sm mx-auto flex flex-col justify-start items-center mt-10'>
@@ -67,12 +74,8 @@ function LoginForm ({route, method}) {
             <button className='form-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' type='submit'>
                 {title}
             </button>
-            {method === "login" ? <a className='text-blue-600 mt-2' onClick={() => {
-                useNavigate('/register')
-            }}>Register</a> : 
-            <a className='text-blue-600 mt-2' onClick={() => {
-                useNavigate('/login')
-            }}>Login</a>}
+            {method === "login" ? <a className='text-blue-600 mt-2' onClick={switchPage}>Register</a> : 
+            <a className='text-blue-600 mt-2' onClick={switchPage}>Login</a>}
         </form>
     );
 }
