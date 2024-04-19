@@ -21,6 +21,21 @@ function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
             .catch((error) => alert(error))
     }
 
+    const editNote = (e) => {
+        e.preventDefault()
+        api
+            .post('/api/notes/', {body_area: bodyArea, content, title})
+            .then((res) => {
+                if (!res.status === 201) alert('Failed to create note.')
+                getNotes();
+                setNewNoteView(false);
+                setBodyArea("Full-body");
+                setContent("");
+                setTitle("");
+            })
+            .catch((error) => alert(error))
+    }
+
     if (!newNoteView) {
         return <></>
     } else {

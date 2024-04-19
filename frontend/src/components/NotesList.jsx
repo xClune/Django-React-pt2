@@ -31,7 +31,7 @@ function NotesList ({notes, getNotes}) {
                 <div className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 self-start w-full rounded-lg'
                 key={header}>
                     <div className='flex flex-col'>
-                        <div className='p-1 self-center justify-self-center text-2xl font-bold w-full border-2 border-stone-600 bg-white-400 text-stone-600 rounded-lg mb-20'>{header}
+                        <div className='p-1 self-center justify-self-center text-center text-2xl font-bold w-full border-2 border-stone-600 bg-white-400 text-stone-600 rounded-lg mb-32'>{header}
                         </div>
                             {notes.filter((note) => note.body_area == header).map((note, index) => (
                                 <Note note={note} onDelete={deleteNote} key={note.id} z={index*10}/>

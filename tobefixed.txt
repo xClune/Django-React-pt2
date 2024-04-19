@@ -11,7 +11,7 @@ To implement:
 
 Bugs to be fixed:
     Serious:
-        - Under 4 headers on full screen ruins display, notelist enters a different grid column from the header.
+        - (FIXED) Under 4 headers on full screen ruins display, notelist enters a different grid column from the header. 
 
     Small:
         - cards can partially overlap new workout form on hover

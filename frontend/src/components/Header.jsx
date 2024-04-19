@@ -25,7 +25,7 @@ function Header ({setNewNoteView}) {
             sm:h-24 sm:justify-between sm:flex sm:flex-row py-1`}>
                 <div className={`title flex flex-row items-center
                 text-white font-extrabold text-2xl 
-                mx-20 my-10
+                mx-10 my-10
                 sm:text-3xl
                 md:text-4xl
                 transition-all ease-in duration-200`}>
@@ -45,7 +45,7 @@ function Header ({setNewNoteView}) {
                     <button 
                     className={`
                     text-white font-medium bg-stone-700 
-                    py-2.5 px-5 mb-10 ml-10
+                    py-2.5 px-5 mb-50 ml-5
                     text-center text-xs sm:text-sm w-auto 
                     hover:bg-stone-800 
                     focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
@@ -57,7 +57,7 @@ function Header ({setNewNoteView}) {
                     <button 
                     className={`
                     text-white font-medium bg-stone-700 
-                    py-2.5 px-5 mb-10 ml-10
+                    py-2.5 px-5 mb-5 ml-5
                     text-center text-sm w-auto 
                     hover:bg-stone-800 
                     focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
