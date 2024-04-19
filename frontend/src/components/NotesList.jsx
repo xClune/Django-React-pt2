@@ -18,18 +18,22 @@ function NotesList ({notes, getNotes}) {
             .catch((error) => alert(error))
     }
 
-    const categories = ['Full-body', 'Legs', 'Abs', 'Chest', 'Back', 'Shoulders', 'Arms']
+    // create headers from unique body areas
+    const categories = new Set ([]);
+    notes.map((note) => categories.add(note.body_area));
+    // convert back to array for operations
+    const headerArray = Array.from(categories);
 
     return (
         <>
             <div className="category grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 ml-10 mr-10 mt-2">
-                {categories.map((category) => 
+                {headerArray.map((header) => 
                 <div className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 self-start w-full rounded-lg'
-                key={category}>
-                    <div className='p-1 self-center justify-self-center text-2xl font-bold w-full border-2 border-stone-400 bg-white-400 text-stone-400 rounded-lg mb-20 peer'>{category}
+                key={header}>
+                    <div className='p-1 self-center justify-self-center text-2xl font-bold w-full border-2 border-stone-600 bg-white-400 text-stone-600 rounded-lg mb-20 peer'>{header}
                     </div>
                     <div className='flex flex-col'>
-                        {notes.filter((note) => note.body_area == category).map((note, index) => (
+                        {notes.filter((note) => note.body_area == header).map((note, index) => (
                             <Note note={note} onDelete={deleteNote} key={note.id} z={index*10}/>
                         ))}
                     </div>
