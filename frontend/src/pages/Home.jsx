@@ -7,6 +7,7 @@ import WorkoutForm from '../components/WorkoutForm'
 
 function Home() {
     const [notes, setNotes] = useState([])
+    const [noteId, setNoteId] = useState('')
     const [newNoteView, setNewNoteView] = useState(false)
 
     const getNotes = () => {
@@ -27,8 +28,8 @@ function Home() {
 
             <Header setNewNoteView={setNewNoteView}/>
             <div className='main relative m-0 p-0'>
-                <WorkoutForm getNotes={ getNotes } newNoteView={newNoteView} setNewNoteView={setNewNoteView}/>
-                <NotesList notes={ notes } getNotes={ getNotes }/>   
+                <WorkoutForm notes={ notes } noteId={noteId} getNotes={ getNotes } newNoteView={newNoteView} setNewNoteView={setNewNoteView}/>
+                <NotesList notes={ notes } setNoteId={setNoteId} getNotes={ getNotes } setNewNoteView={setNewNoteView}/>   
             </div>
         </>
     );

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import api from '../api'
 import Note from './Note.jsx'
 
-function NotesList ({notes, getNotes}) {
+function NotesList ({notes, setNoteId, getNotes, setNewNoteView}) {
 
     useEffect(() => {
         getNotes();
@@ -33,18 +33,13 @@ function NotesList ({notes, getNotes}) {
                     <div className='flex flex-col'>
                         <div className='p-1 self-center justify-self-center text-center text-2xl font-bold w-full border-2 border-stone-600 bg-white-400 text-stone-600 rounded-lg mb-32'>{header}
                         </div>
-                            {notes.filter((note) => note.body_area == header).map((note, index) => (
-                                <Note note={note} onDelete={deleteNote} key={note.id} z={index*10}/>
-                            ))}
-                        </div>
-                    
+                        {notes.filter((note) => note.body_area == header).map((note, index) => (
+                            <Note note={note} setNoteId={setNoteId} onDelete={deleteNote} key={note.id} z={index*10} setNewNoteView={setNewNoteView}/>
+                        ))}
+                    </div>
                 </div>
                 )}
             </div>
-            {/* Instead of 6 cells, create 6 columns here. Use map w/filter to place the workouts only in their correct column (by category) */}
-            {/* {notes.filter((note) => note.body_area === {category}).map((note) => (
-                <Note note={note} onDelete={deleteNote} key={note.id} />
-            ))} */}
         </>
     )
 

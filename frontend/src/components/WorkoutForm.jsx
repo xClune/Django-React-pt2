@@ -1,10 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import api from '../api'
 
-function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
+function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) {
     const [bodyArea, setBodyArea] = useState("Full-body")
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
+
+    useEffect(() => {
+        if (newNoteView === 'edit'){
+            console.log(noteId)
+            for (const note of notes){
+                if (note.id === noteId){
+                    setBodyArea(note.body_area);
+                    setContent(note.content);
+                    setTitle(note.title);
+                }
+            };
+        }
+    }, [newNoteView])
 
     const createNote = (e) => {
         e.preventDefault()
@@ -22,11 +35,11 @@ function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
     }
 
     const editNote = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         api
-            .post('/api/notes/', {body_area: bodyArea, content, title})
+            .put(`/api/notes/edit/${noteId}/`, {body_area: bodyArea, content, title})
             .then((res) => {
-                if (!res.status === 201) alert('Failed to create note.')
+                if (!res.status === 204) alert('Failed to update note.')
                 getNotes();
                 setNewNoteView(false);
                 setBodyArea("Full-body");
@@ -41,7 +54,7 @@ function WorkoutForm ({ getNotes, newNoteView, setNewNoteView }) {
     } else {
         return (
             <>
-                <form onSubmit={createNote} className='bg-stone-300 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-auto'>
+                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-300 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-auto'>
                     <button 
                     className='absolute right-2 top-1' 
                     onClick={() => {

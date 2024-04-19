@@ -10,8 +10,18 @@ To implement:
     - storage for completed workouts? loop through completed workout and add exercises to new database
 
 Bugs to be fixed:
-    Serious:
-        - (FIXED) Under 4 headers on full screen ruins display, notelist enters a different grid column from the header. 
+    Urgent:
+        - 
 
-    Small:
+    Moderate:
+        - Form reset shouldn't go through fields individually
+    Low:
         - cards can partially overlap new workout form on hover
+
+
+Resolved:
+    - (FIXED) Under 4 headers on full screen ruins display, notelist enters a   different grid column from the header. 
+    (SOLUTION): div arrangement, moved header one level down
+
+    - (FIXED) hide info again on mouseout of card
+    (SOLUTION): added state change on mouseLeave.
