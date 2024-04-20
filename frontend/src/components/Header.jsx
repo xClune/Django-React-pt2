@@ -62,11 +62,11 @@ function Header ({setNewNoteView}) {
                 </div>
             </header>
             {navMenu === true && 
-            <div className='w-full h-auto bg-stone-500 flex flex-col items-center -my-1 [&>*]:w-full [&>*]:text-end [&>*]:hover:bg-stone-300 [&>*]:text-white [&>*]:border-b [&>*]:border-stone-700'>
-                <div className='py-1' onClick={() => {setNewNoteView(true)}}>
+            <div className='w-full h-auto bg-stone-500 flex flex-col items-center -my-1 [&>*]:w-full [&>*]:text-end  [&>*]:text-white [&>*]:border-b [&>*]:border-stone-700'>
+                <div className='py-1 hover:bg-stone-300' onClick={() => {setNewNoteView(true)}}>
                     <span className='mr-4'>New Workout</span>
                 </div>
-                <div className='py-1' onClick={() => {
+                <div className='py-1 hover:bg-stone-300' onClick={() => {
                         navigate('/login')
                     }}>
                     <span className='mr-4'>Logout</span>

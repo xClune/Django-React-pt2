@@ -55,18 +55,19 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
     } else {
         return (
             <>
-                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-400 border-2 border-stone-700 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-auto z-50'>
+                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-400 border-2 border-stone-700 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-11/12 sm:w-6/12 z-50 text-white'>
+                    <div>Enter New Workout:</div>
                     <button 
-                    className='absolute right-2 top-1' 
+                    className='absolute right-2 top-2 hover:bg-red-600 rounded-md px-3' 
                     onClick={() => {
                         setNewNoteView(false);
                         setBodyArea("Full-body");
                         setContent("");
                         setTitle("");
                         }}>
-                        x
+                        X
                     </button>
-                    <label htmlFor="title">Workout Name:</label>
+                    <label htmlFor="title"></label>
                     <br />
                     <input
                         className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
@@ -79,12 +80,13 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                         value={title}
                     />
                     <br />
-                    <label htmlFor="body-area">Body Area:</label>
+                    <label htmlFor="body-area"></label>
                     <br />
                     <select
                         className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
                         id="body-area"
                         name="body-area"
+                        placeholder="Category"
                         required
                         value={ bodyArea }
                         onChange={(e) => {
@@ -101,7 +103,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                         <option value="Arms">Arms</option>
                     </select>
                     <br />
-                    <label htmlFor="content">Content:</label>
+                    <label htmlFor="content"></label>
                     <br />
                     <textarea
                         className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
@@ -114,9 +116,10 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                     ></textarea>
                     <br />               
                     <input 
-                    className='form-button text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800'
+                    className='form-button text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800 cursor-pointer'
                     type="submit" 
-                    value="Submit"></input>
+                    value="Submit"> 
+                    </input>
                 </form>
             </>
         )
