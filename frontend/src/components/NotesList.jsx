@@ -26,7 +26,7 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView}) {
 
     return (
         <>
-            <div className="category grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 ml-10 mr-10 mt-2">
+            <div className="category grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 mx-5 sm:mx-10 mt-2">
                 {headerArray.map((header) => 
                 <div className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 self-start w-full rounded-lg'
                 key={header}>

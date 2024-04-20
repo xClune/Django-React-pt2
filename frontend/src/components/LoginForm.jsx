@@ -37,15 +37,12 @@ function LoginForm ({route, method}) {
         else {navigate('/login')}
     }
 
-
-
     return (
         <form onSubmit={handleSubmit} 
         className='max-w-sm mx-auto flex flex-col justify-start items-center mt-10'>
             <h1 className='text-3xl'>{title}</h1>
             <div>
-                <label htmlFor='username' className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
-                    Username: 
+                <label htmlFor='username' className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'> 
                 </label>
                 <input 
                 className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
@@ -57,8 +54,7 @@ function LoginForm ({route, method}) {
                 />
             </div>
             <div className='mb-5'>
-                <label htmlFor="password" className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
-                    Password
+                <label htmlFor="password" className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>    
                 </label>
                 <input 
                 className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'

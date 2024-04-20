@@ -27,3 +27,6 @@ Resolved:
 
     - (FIXED) hide info again on mouseout of card
     (SOLUTION): added state change on mouseLeave.
+
+    - (FIXED) poor hover effect on svg log
+    (SOLUTION): moved 'group' to higher left increasing target size

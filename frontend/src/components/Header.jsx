@@ -1,47 +1,38 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react' 
+import Logo from '../assets/Logo'
+import MenuLogo from '../assets/MenuLogo'
+
 
 function Header ({setNewNoteView}) {
     const navigate = useNavigate()
 
     const { pathname } = useLocation();
     const [hidden, setHidden] = useState('');
+    const [navMenu, setNavMenu] = useState(false);
 
-    useEffect(() => {
-        if (pathname === '/') {
-            setHidden('');
-        } else {
-            setHidden('hidden')
-        }
-    }, [])
+    useEffect(() => {pathname === '/' ? setHidden('') : setHidden('hidden')},[])
 
     return (
         <>
-            <header className={`
-            h-30
-            flex flex-col items-center
+            <header className={`h-20 items-center
             bg-stone-700 border-b-2 border-gray-200 
             shadow-lg shadow-gray-200
-            sm:h-24 sm:justify-between sm:flex sm:flex-row py-1`}>
-                <div className={`title flex flex-row items-center
-                text-white font-extrabold text-2xl 
-                mx-10 my-10
-                sm:text-3xl
-                md:text-4xl
-                transition-all ease-in duration-200`}>
-                    <svg width="120" height="87" viewBox="0 0 120 87" fill="none" xmlns="http://www.w3.org/2000/svg" className='group'>
-                        <g id="Frame 2" >
-                            <g id="Outer Group" className=''>
-                                <path id="Outer" d="M45.7928 67.3312L45.7972 58.204L36.9175 58.2061L57.8037 22.261L78.6939 58.2007L69.8027 58.1961L69.8101 67.3299L94.6031 67.3272L57.8006 4L21 67.3339L45.7928 67.3312Z" fill="white"/>
-                            </g>
-                            <g id="Arrow Group" className='group-hover:-translate-y-8 transition-all ease-out duration-700'>
-                                <path id="Inner" d="M58 64L46.453 84H69.547L58 64ZM60 84V82H56V84H60Z" fill="white"/>
-                            </g>
-                        </g>
-                    </svg>
-                    TrainSense
+            sm:h-24 justify-between flex flex-row m-0 w-screen`}>
+                <div className={` 
+                ml-3
+                sm:mx-10 sm:my-10
+                transition-all ease-in duration-200 h-full flex flex-row items-center`}>
+                    <Logo />
+                    <div className='title
+                    text-white font-extrabold text-2xl sm:text-3xl hidden sm:block'>
+                        TrainSense
+                    </div>
                 </div>
-                <div className={`buttons  flex flex-row items-center justify-end ${hidden}`}>
+                <div className='block sm:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
+                    <MenuLogo />
+                </div>
+                <div className={`buttons  flex flex-row items-center justify-end ${hidden} hidden sm:block`}>
                     <button 
                     className={`
                     text-white font-medium bg-stone-700 
@@ -70,6 +61,18 @@ function Header ({setNewNoteView}) {
                     </button>
                 </div>
             </header>
+            {navMenu === true && 
+            <div className='w-full h-auto bg-stone-500 flex flex-col items-center -my-1 [&>*]:w-full [&>*]:text-end [&>*]:hover:bg-stone-300 [&>*]:text-white [&>*]:border-b [&>*]:border-stone-700'>
+                <div className='py-1' onClick={() => {setNewNoteView(true)}}>
+                    <span className='mr-4'>New Workout</span>
+                </div>
+                <div className='py-1' onClick={() => {
+                        navigate('/login')
+                    }}>
+                    <span className='mr-4'>Logout</span>
+                </div>
+            </div>
+            }
         </>
     )
 }
