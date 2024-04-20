@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import api from '../api'
 
 function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) {
-    const [bodyArea, setBodyArea] = useState("Full-body")
+    const [bodyArea, setBodyArea] = useState("")
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
 
+    // if form is brought up through 'edit' set values to be the same
+    // as the note selected.
     useEffect(() => {
         if (newNoteView === 'edit'){
-            console.log(noteId)
             for (const note of notes){
                 if (note.id === noteId){
                     setBodyArea(note.body_area);
@@ -27,7 +28,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                 if (!res.status === 201) alert('Failed to create note.')
                 getNotes();
                 setNewNoteView(false);
-                setBodyArea("Full-body");
+                setBodyArea("");
                 setContent("");
                 setTitle("");
             })
@@ -54,7 +55,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
     } else {
         return (
             <>
-                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-300 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-auto'>
+                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-400 border-2 border-stone-700 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-auto z-50'>
                     <button 
                     className='absolute right-2 top-1' 
                     onClick={() => {
@@ -72,6 +73,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                         type="text"
                         id="title"
                         name="title"
+                        placeholder='Title'
                         required
                         onChange={(e) => setTitle(e.target.value)}
                         value={title}
@@ -89,6 +91,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                             setBodyArea(e.target.value)
                         }}
                     >
+                        <option value="" disabled selected>Select category</option>
                         <option value="Full-body">Full Body</option>
                         <option value="Legs">Legs</option>
                         <option value="Abs">Abs</option>
@@ -104,6 +107,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                         className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
                         id="content"
                         name="content"
+                        placeholder='Workout Content'
                         required
                         value={content}
                         onChange={(e) => setContent(e.target.value)}

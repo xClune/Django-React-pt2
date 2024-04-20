@@ -8,6 +8,8 @@ To implement:
     - drag and drop?
     - exercise data structure => {exercise: text validate?, sets: number, reps: number}
     - storage for completed workouts? loop through completed workout and add exercises to new database
+    - icon selector for headers
+    - make home page and move noteslist to separate page
 
 Bugs to be fixed:
     Urgent:
