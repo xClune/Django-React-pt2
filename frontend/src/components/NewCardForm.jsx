@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import api from '../api'
 
-function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) {
-    const [category, setCategory] = useState("")
+function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNoteView }) {
+    const [folder, setFolder] = useState("")
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
 
@@ -12,7 +12,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
         if (newNoteView === 'edit'){
             for (const note of notes){
                 if (note.id === noteId){
-                    setCategory(note.category);
+                    setFolder(note.category);
                     setContent(note.content);
                     setTitle(note.title);
                 }
@@ -22,17 +22,13 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
 
     const createNote = (e) => {
         e.preventDefault()
-        if (category === 'Category'){
-            alert('Please select a category!')
-            return;
-        }
         api
-            .post('/api/notes/', {category, content, title})
+            .post('/api/notes/', {category: folder, content, title})
             .then((res) => {
                 if (!res.status === 201) alert('Failed to create note.')
                 getNotes();
                 setNewNoteView(false);
-                setCategory("");
+                setFolder("");
                 setContent("");
                 setTitle("");
             })
@@ -41,17 +37,13 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
 
     const editNote = (e) => {
         e.preventDefault();
-        if (category === 'Category'){
-            alert('Please select a category!')
-            return;
-        }
         api
             .put(`/api/notes/edit/${noteId}/`, {category, content, title})
             .then((res) => {
                 if (!res.status === 204) alert('Failed to update note.')
                 getNotes();
                 setNewNoteView(false);
-                setCategory("");
+                setFolder("");
                 setContent("");
                 setTitle("");
             })
@@ -69,7 +61,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                     className='absolute right-2 top-2 hover:bg-red-600 rounded-md px-3' 
                     onClick={() => {
                         setNewNoteView(false);
-                        setCategory("");
+                        setFolder("");
                         setContent("");
                         setTitle("");
                         }}>
@@ -88,26 +80,21 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                         value={title}
                     />
                     <br />
-                    <label htmlFor="category"></label>
+                    <label htmlFor="folder"></label>
                     <br />
                     <select
                         className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
-                        id="category"
-                        name="category"
+                        id="folder"
+                        name="folder"
                         required
-                        value={category}
+                        value={folder}
                         onChange={(e) => {
-                            setCategory(e.target.value)
+                            setFolder(e.target.value)
                         }}
                     >
-                        <option value="Category">Select category</option>
-                        <option value="Full-body">Full Body</option>
-                        <option value="Legs">Legs</option>
-                        <option value="Abs">Abs</option>
-                        <option value="Chest">Chest</option>
-                        <option value="Back">Back</option>
-                        <option value="Shoulders">Shoulders</option>
-                        <option value="Arms">Arms</option>
+                        {folders.map((folder, index) => (
+                            <option key={index} value={folder}>{folder}</option>
+                        ))}   
                     </select>
                     <br />
                     <label htmlFor="content"></label>
@@ -122,11 +109,11 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                         onChange={(e) => setContent(e.target.value)}
                     ></textarea>
                     <br />               
-                    <input 
+                    <button 
                     className='form-button text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800 cursor-pointer'
                     type="submit" 
                     value="Submit"> 
-                    </input>
+                    </button>
                 </form>
             </>
         )
@@ -134,4 +121,4 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
     
 }
 
-export default WorkoutForm
+export default NewCardForm
