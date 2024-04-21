@@ -4,10 +4,10 @@ from django.contrib import admin
 from .models import Note
 
 class NoteAdmin(admin.ModelAdmin):
-    fields    = ('title', 'body_area', 'content', 'created_at', 'author')
+    fields    = ('title', 'category', 'content', 'created_at', 'author')
 
     #list of fields to display in django admin
-    list_display = ['title', 'body_area', 'content', 'created_at', 'author']
+    list_display = ['title', 'category', 'content', 'created_at', 'author']
 
 
     #if you want django admin to show the search bar, just add this line

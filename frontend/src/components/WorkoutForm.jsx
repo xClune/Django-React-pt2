@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import api from '../api'
 
 function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) {
-    const [bodyArea, setBodyArea] = useState("")
+    const [category, setCategory] = useState("")
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
 
@@ -12,7 +12,7 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
         if (newNoteView === 'edit'){
             for (const note of notes){
                 if (note.id === noteId){
-                    setBodyArea(note.body_area);
+                    setCategory(note.category);
                     setContent(note.content);
                     setTitle(note.title);
                 }
@@ -22,13 +22,17 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
 
     const createNote = (e) => {
         e.preventDefault()
+        if (category === 'Category'){
+            alert('Please select a category!')
+            return;
+        }
         api
-            .post('/api/notes/', {body_area: bodyArea, content, title})
+            .post('/api/notes/', {category, content, title})
             .then((res) => {
                 if (!res.status === 201) alert('Failed to create note.')
                 getNotes();
                 setNewNoteView(false);
-                setBodyArea("");
+                setCategory("");
                 setContent("");
                 setTitle("");
             })
@@ -37,13 +41,17 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
 
     const editNote = (e) => {
         e.preventDefault();
+        if (category === 'Category'){
+            alert('Please select a category!')
+            return;
+        }
         api
-            .put(`/api/notes/edit/${noteId}/`, {body_area: bodyArea, content, title})
+            .put(`/api/notes/edit/${noteId}/`, {category, content, title})
             .then((res) => {
                 if (!res.status === 204) alert('Failed to update note.')
                 getNotes();
                 setNewNoteView(false);
-                setBodyArea("Full-body");
+                setCategory("");
                 setContent("");
                 setTitle("");
             })
@@ -55,13 +63,13 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
     } else {
         return (
             <>
-                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-400 border-2 border-stone-700 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-11/12 sm:w-6/12 z-50 text-white'>
+                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-400 border-2 border-stone-700 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/4 w-11/12 sm:w-6/12 z-50 text-white'>
                     <div>Enter New Workout:</div>
                     <button 
                     className='absolute right-2 top-2 hover:bg-red-600 rounded-md px-3' 
                     onClick={() => {
                         setNewNoteView(false);
-                        setBodyArea("Full-body");
+                        setCategory("");
                         setContent("");
                         setTitle("");
                         }}>
@@ -80,20 +88,19 @@ function WorkoutForm ({ notes, noteId, getNotes, newNoteView, setNewNoteView }) 
                         value={title}
                     />
                     <br />
-                    <label htmlFor="body-area"></label>
+                    <label htmlFor="category"></label>
                     <br />
                     <select
                         className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
-                        id="body-area"
-                        name="body-area"
-                        placeholder="Category"
+                        id="category"
+                        name="category"
                         required
-                        value={ bodyArea }
+                        value={category}
                         onChange={(e) => {
-                            setBodyArea(e.target.value)
+                            setCategory(e.target.value)
                         }}
                     >
-                        <option value="" disabled selected>Select category</option>
+                        <option value="Category">Select category</option>
                         <option value="Full-body">Full Body</option>
                         <option value="Legs">Legs</option>
                         <option value="Abs">Abs</option>

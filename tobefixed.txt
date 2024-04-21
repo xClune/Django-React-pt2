@@ -6,7 +6,7 @@ Currently:
 To implement:
     - register/login errors => from error alerts to user readable on browser
     - styling on category headers
-    - drag and drop?
+    - drag and drop? dnd-kit || beautiful-dnd
     - exercise data structure => 
     {exercise: text validate?, sets: number, reps: number}
     - storage for completed workouts? loop through completed workout and add exercises to new database
