@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import api from '../api'
 
 function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNoteView }) {
-    const [folder, setFolder] = useState("")
+    const [category, setCategory] = useState("")
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
 
@@ -12,7 +12,7 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
         if (newNoteView === 'edit'){
             for (const note of notes){
                 if (note.id === noteId){
-                    setFolder(note.category);
+                    setCategory(note.category);
                     setContent(note.content);
                     setTitle(note.title);
                 }
@@ -23,12 +23,12 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
     const createNote = (e) => {
         e.preventDefault()
         api
-            .post('/api/notes/', {category: folder, content, title})
+            .post('/api/notes/', {category, content, title})
             .then((res) => {
                 if (!res.status === 201) alert('Failed to create note.')
                 getNotes();
                 setNewNoteView(false);
-                setFolder("");
+                setCategory("");
                 setContent("");
                 setTitle("");
             })
@@ -43,7 +43,7 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
                 if (!res.status === 204) alert('Failed to update note.')
                 getNotes();
                 setNewNoteView(false);
-                setFolder("");
+                setCategory("");
                 setContent("");
                 setTitle("");
             })
@@ -87,13 +87,13 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
                         id="folder"
                         name="folder"
                         required
-                        value={folder}
                         onChange={(e) => {
-                            setFolder(e.target.value)
+                            setCategory(e.target.value)
                         }}
-                    >
-                        {folders.map((folder, index) => (
-                            <option key={index} value={folder}>{folder}</option>
+                    >  
+                        <option key={0} value={'select folder'} selected disabled>Select folder</option>
+                        {folders.map((folder) => (
+                            <option key={folder.id} value={folder.folder}>{folder.folder}</option>
                         ))}   
                     </select>
                     <br />
@@ -113,6 +113,7 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
                     className='form-button text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800 cursor-pointer'
                     type="submit" 
                     value="Submit"> 
+                        Add Card
                     </button>
                 </form>
             </>

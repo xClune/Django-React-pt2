@@ -23,19 +23,49 @@ function Home() {
             .catch((err) => alert(err))
     }
 
+    const getFolders = () => {
+        api
+            .get("api/folders/")
+            .then((res) => res.data)
+            .then((data) => { setFolders(data) })
+            .catch((err) => alert(err))
+    }
+    
+
     return (
         <>
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>Gym Planner</title>
+                <title>Smart Cards</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Helmet>
 
-            <Header setNewNoteView={setNewNoteView} setNewFolderView={setNewFolderView}/>
+            <Header 
+            setNewNoteView={setNewNoteView} 
+            setNewFolderView={setNewFolderView}/>
             <div className='main relative m-0 p-0'>
-                <NewFolderForm setNewFolderView={setNewFolderView} newFolderView={newFolderView} folders={folders} setFolders={setFolders} />
-                <NewCardForm folders={folders} notes={ notes } noteId={noteId} getNotes={ getNotes } newNoteView={newNoteView} setNewNoteView={setNewNoteView}/>
-                <NotesList notes={ notes } setNoteId={setNoteId} getNotes={ getNotes } setNewNoteView={setNewNoteView}/>   
+                <NewFolderForm 
+                setNewFolderView={setNewFolderView} 
+                newFolderView={newFolderView} 
+                folders={folders} 
+                setFolders={setFolders}
+                getFolders={getFolders} />
+                <NewCardForm 
+                folders={folders}
+                getFolders={getFolders} 
+                notes={ notes } 
+                noteId={noteId} 
+                getNotes={ getNotes } 
+                newNoteView={newNoteView} 
+                setNewNoteView={setNewNoteView}/>
+                <NotesList 
+                notes={ notes } 
+                setNoteId={setNoteId} 
+                getNotes={ getNotes } 
+                setNewNoteView={setNewNoteView}
+                getFolders={ getFolders } 
+                setNewFolderView={setNewFolderView}
+                folders={folders}/>   
             </div>
         </>
     );

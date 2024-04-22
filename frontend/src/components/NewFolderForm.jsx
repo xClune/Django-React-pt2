@@ -1,13 +1,20 @@
 import { useState } from 'react'
+import api from '../api'
 
-function NewFolderForm ({ setNewFolderView, newFolderView, folders, setFolders }) {
+function NewFolderForm ({ getFolders, setNewFolderView, newFolderView }) {
     const [folderName, setFolderName] = useState("")
 
     const createNewFolder = (e) => {
         e.preventDefault()
-        setFolders(folders => [...folders, folderName])
-        setNewFolderView(false);
-        setFolderName('')
+        api
+            .post('/api/folders/', {folder: folderName})
+            .then((res) => {
+                if (!res.status === 201) alert('Failed to create folder.')
+                getFolders();
+                setNewFolderView(false);
+                setFolderName('')
+            })
+            .catch((error) => alert(error))
     }
 
     if (!newFolderView) {
@@ -41,7 +48,7 @@ function NewFolderForm ({ setNewFolderView, newFolderView, folders, setFolders }
                     <button 
                     className='form-button text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800 cursor-pointer'
                     type="submit" 
-                    value="Submit"> 
+                    value="Submit">Add Folder
                     </button>
                 </form>
             </>

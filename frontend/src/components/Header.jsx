@@ -26,13 +26,13 @@ function Header ({setNewNoteView, setNewFolderView}) {
                     <Logo />
                     <div className='title
                     text-white font-extrabold text-2xl sm:text-3xl hidden sm:block'>
-                        TrainSense
+                        SmartCards
                     </div>
                 </div>
-                <div className='block sm:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
+                <div className='block md:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />
                 </div>
-                <div className={`buttons  flex flex-row items-center justify-end ${hidden} hidden sm:block`}>
+                <div className={`buttons  flex flex-row items-center justify-end ${hidden} hidden md:block`}>
                     <button 
                     className={`
                     text-white font-medium bg-stone-700 
@@ -75,8 +75,11 @@ function Header ({setNewNoteView, setNewFolderView}) {
             </header>
             {navMenu === true && 
             <div className='w-full h-auto bg-stone-500 flex flex-col items-center -my-1 [&>*]:w-full [&>*]:text-end  [&>*]:text-white [&>*]:border-b [&>*]:border-stone-700'>
+                <div className='py-1 hover:bg-stone-300' onClick={() => {setNewFolderView(true)}}>
+                    <span className='mr-4'>New Folder</span>
+                </div>
                 <div className='py-1 hover:bg-stone-300' onClick={() => {setNewNoteView(true)}}>
-                    <span className='mr-4'>New Workout</span>
+                    <span className='mr-4'>New Card</span>
                 </div>
                 <div className='py-1 hover:bg-stone-300' onClick={() => {
                         navigate('/login')
