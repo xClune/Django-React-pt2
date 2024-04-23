@@ -11,9 +11,9 @@ function Note({note, onDelete, setNewNoteView, setNoteId, z}) {
 
     return (
         <div className={`note-container text-white flex flex-col w-full border-4 border-stone-400 bg-stone-500 rounded-lg p-5 self-center z-${z} -mt-20 peer peer-hover:translate-y-20 transition-all ease-in-out duration-700`} onMouseLeave={() => setHidden('hidden')}>
-            <p className={`note-title hover:z-50 font-bold mb-3`}>{note.title}</p>
+            <p className={`note-title font-bold mb-3`}>{note.title}</p>
             <p className={`note-date ${hidden} text-xs self-end`}>{ formattedDate }</p>
-            <p className={`category ${hidden}hover:z-50 border-b border-stone-400`}>{note.category}</p>
+            <p className={`category ${hidden} border-b border-stone-400`}>{note.category}</p>
             <p className={`note-content ${hidden}`}>{note.content}</p>
             <div className='flex flex-row items-center justify-between'>
                 <button className={`note-edit ${hidden} text-xs text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg mt-2 px-1 py-1 text-center dark:bg-stone-600 dark:hover:bg-blue-600 dark:focus:ring-stone-800 z-${z} transition-all ease-in duration-300 flex-1 mx-1`} 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import api from '../api'
+import '../styles/Form.css'
 
 function NewFolderForm ({ getFolders, setNewFolderView, newFolderView }) {
     const [folderName, setFolderName] = useState("")
