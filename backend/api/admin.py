@@ -5,10 +5,10 @@ from .models import Note
 from .models import Folder
 
 class NoteAdmin(admin.ModelAdmin):
-    fields    = ('title', 'category', 'content', 'created_at', 'author')
+    fields    = ('title', 'folder', 'content', 'created_at', 'author')
 
     #list of fields to display in django admin
-    list_display = ['title', 'category', 'content', 'created_at', 'author']
+    list_display = ['title', 'folder', 'content', 'created_at', 'author']
 
     #if you want django admin to show the search bar, just add this line
     search_fields = ['title', 'author']

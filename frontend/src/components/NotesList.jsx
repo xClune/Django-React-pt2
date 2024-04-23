@@ -19,7 +19,7 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
         }
 
         for (const note of notes) {
-            if (note['category'] === folder['folder']){
+            if (note['folder'] === folder['folder']){
                 alert('Please move or delete all cards within first')
                 return;
             }      
@@ -49,7 +49,7 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
     else {
     return (
             <>
-                <div className="category grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 mx-5 sm:mx-10 mt-2">
+                <div className="folder grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 mx-5 sm:mx-10 mt-2">
                     {folders.map((folder) => 
                     // make this div draggable with dnd-kit
                     <div className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 self-start w-full rounded-lg'
@@ -65,7 +65,7 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
                                 </button>
                                 {folder.folder}
                             </div>
-                            {notes.filter((note) => note.category == folder.folder).map((note, index) => (
+                            {notes.filter((note) => note.folder == folder.folder).map((note, index) => (
                                 <Note note={note} setNoteId={setNoteId} onDelete={deleteNote} key={note.id} z={index*10} setNewNoteView={setNewNoteView}/>
                             ))}
                         </div>

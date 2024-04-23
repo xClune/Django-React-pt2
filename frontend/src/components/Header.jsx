@@ -29,10 +29,10 @@ function Header ({setNewNoteView, setNewFolderView}) {
                         SmartCards
                     </div>
                 </div>
-                <div className='block md:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
+                <div className='block lg:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />
                 </div>
-                <div className={`buttons  flex flex-row items-center justify-end ${hidden} hidden md:block`}>
+                <div className={`buttons  flex flex-row items-center justify-end ${hidden} hidden lg:block`}>
                     <button 
                     className={`
                     text-white font-medium bg-stone-700 
