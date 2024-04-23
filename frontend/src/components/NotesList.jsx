@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import api from '../api'
 import Note from './Note.jsx'
+import '../styles/NoteList.css'
 
 function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, folders}) {
 
@@ -55,9 +56,9 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
                     <div className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 self-start w-full rounded-lg'
                     key={folder.id}>
                         <div className='flex flex-col overflow-hidden rounded-lg'>
-                            <div className='relative p-1 self-center justify-self-center text-center text-2xl font-bold w-full border-2 border-stone-600 bg-stone-300 text-stone-600 rounded-lg mb-24'>
+                            <div className='relative p-1 self-center justify-self-center text-center text-l md:text-2xl font-bold w-full border-2 border-stone-600 bg-stone-300 text-stone-600 rounded-lg mb-24 px-5'>
                                 <button 
-                                className='absolute right-1 top-1 hover:bg-red-600 rounded-sm px-1 text-xs' 
+                                className='foldername absolute right-1 top-1 hover:bg-red-600 rounded-sm px-1 text-xs' 
                                 onClick={() => {
                                     deleteFolder(folder.id);
                                     }}>

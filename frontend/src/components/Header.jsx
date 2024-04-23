@@ -8,7 +8,7 @@ function Header ({setNewNoteView, setNewFolderView}) {
     const navigate = useNavigate()
 
     const { pathname } = useLocation();
-    const [hidden, setHidden] = useState('');
+    const [hidden, setHidden] = useState('hidden');
     const [navMenu, setNavMenu] = useState(false);
 
     useEffect(() => {pathname === '/' ? setHidden('') : setHidden('hidden')},[])
@@ -32,7 +32,8 @@ function Header ({setNewNoteView, setNewFolderView}) {
                 <div className='block lg:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />
                 </div>
-                <div className={`buttons  flex flex-row items-center justify-end ${hidden} hidden lg:block`}>
+                <div className={`${hidden}`}>
+                <div className={`buttons flex flex-row items-center justify-end lg:block`}>
                     <button 
                     className={`
                     text-white font-medium bg-stone-700 
@@ -71,6 +72,7 @@ function Header ({setNewNoteView, setNewFolderView}) {
                     }}>
                         Logout
                     </button>
+                </div>
                 </div>
             </header>
             {navMenu === true && 

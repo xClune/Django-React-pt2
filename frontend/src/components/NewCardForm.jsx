@@ -92,7 +92,7 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
                             setFolder(e.target.value)
                         }}
                     >  
-                        <option key={0} value={'select folder'} selected disabled>Select folder</option>
+                        <option key={0} value={'select folder'} disabled selected>Select folder</option>
                         {folders.map((folder) => (
                             <option key={folder.id} value={folder.folder}>{folder.folder}</option>
                         ))}   

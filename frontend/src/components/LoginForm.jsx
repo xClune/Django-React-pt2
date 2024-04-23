@@ -70,8 +70,8 @@ function LoginForm ({route, method}) {
             <button className='form-button text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800' type='submit'>
                 {title}
             </button>
-            {method === "login" ? <a className='text-stone-600 mt-2' onClick={switchPage}>Register</a> : 
-            <a className='text-stone-600 mt-2' onClick={switchPage}>Login</a>}
+            {method === "login" ? <a className='text-stone-600 mt-2 cursor-pointer' onClick={switchPage}>Register</a> : 
+            <a className='text-stone-600 mt-2 cursor-pointer' onClick={switchPage}>Login</a>}
         </form>
     );
 }
