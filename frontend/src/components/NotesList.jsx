@@ -10,11 +10,16 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
     }, [])
 
     const deleteFolder = (id) => {
+        let folder;
 
-        const folder = folders.filter((folder)=> folder.id === id);
+        for (const item of folders) {
+            if (id === item.id){
+                folder = item
+            }
+        }
 
-        for (const note in notes) {
-            if (note.category === folder.folder){
+        for (const note of notes) {
+            if (note['category'] === folder['folder']){
                 alert('Please move or delete all cards within first')
                 return;
             }      
