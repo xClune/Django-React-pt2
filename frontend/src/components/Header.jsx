@@ -4,7 +4,7 @@ import Logo from '../assets/Logo'
 import MenuLogo from '../assets/MenuLogo'
 
 
-function Header ({setNewNoteView}) {
+function Header ({setNewNoteView, setNewFolderView}) {
     const navigate = useNavigate()
 
     const { pathname } = useLocation();
@@ -26,13 +26,25 @@ function Header ({setNewNoteView}) {
                     <Logo />
                     <div className='title
                     text-white font-extrabold text-2xl sm:text-3xl hidden sm:block'>
-                        TrainSense
+                        SmartCards
                     </div>
                 </div>
-                <div className='block sm:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
+                <div className='block md:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />
                 </div>
-                <div className={`buttons  flex flex-row items-center justify-end ${hidden} hidden sm:block`}>
+                <div className={`buttons  flex flex-row items-center justify-end ${hidden} hidden md:block`}>
+                    <button 
+                    className={`
+                    text-white font-medium bg-stone-700 
+                    py-2.5 px-5 mb-50 ml-5
+                    text-center text-xs sm:text-sm w-auto 
+                    hover:bg-stone-800 
+                    focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
+                    sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
+                    dark:bg-stone-600 dark:hover:bg-stone-300 dark:focus:ring-stone-800 mr-10`}
+                    onClick={() => {setNewFolderView(true)}}>
+                        Add Folder
+                    </button>
                     <button 
                     className={`
                     text-white font-medium bg-stone-700 
@@ -43,7 +55,7 @@ function Header ({setNewNoteView}) {
                     sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
                     dark:bg-stone-600 dark:hover:bg-stone-300 dark:focus:ring-stone-800 mr-10`}
                     onClick={() => {setNewNoteView(true)}}>
-                        Add New
+                        Add Card
                     </button>
                     <button 
                     className={`
@@ -63,8 +75,11 @@ function Header ({setNewNoteView}) {
             </header>
             {navMenu === true && 
             <div className='w-full h-auto bg-stone-500 flex flex-col items-center -my-1 [&>*]:w-full [&>*]:text-end  [&>*]:text-white [&>*]:border-b [&>*]:border-stone-700'>
+                <div className='py-1 hover:bg-stone-300' onClick={() => {setNewFolderView(true)}}>
+                    <span className='mr-4'>New Folder</span>
+                </div>
                 <div className='py-1 hover:bg-stone-300' onClick={() => {setNewNoteView(true)}}>
-                    <span className='mr-4'>New Workout</span>
+                    <span className='mr-4'>New Card</span>
                 </div>
                 <div className='py-1 hover:bg-stone-300' onClick={() => {
                         navigate('/login')
