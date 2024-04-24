@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react' 
+import { useState, useEffect, useContext } from 'react' 
+import { Progress } from '../contexts/ProgressContext'
 import Logo from '../assets/Logo'
 import MenuLogo from '../assets/MenuLogo'
 
@@ -13,6 +14,8 @@ function Header ({setNewNoteView, setNewFolderView}) {
 
     useEffect(() => {pathname === '/' ? setHidden('') : setHidden('hidden')},[])
 
+    const { progress, setProgress } = useContext(Progress);
+
     return (
         <>
             <header className={`h-20 items-center
@@ -25,14 +28,15 @@ function Header ({setNewNoteView, setNewFolderView}) {
                 transition-all ease-in duration-200 h-full flex flex-row items-center`}>
                     <Logo />
                     <div className='title
-                    text-white font-extrabold text-2xl sm:text-3xl hidden sm:block'>
+                    text-white font-extrabold text-2xl sm:text-3xl hidden md:block'>
                         SmartCards
                     </div>
                 </div>
+                <progress value={progress} max={100}/>
                 <div className='block lg:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />
                 </div>
-                <div className={`${hidden}`}>
+                <div className={`${hidden} hidden lg:block`}>
                 <div className={`buttons flex flex-row items-center justify-end lg:block`}>
                     <button 
                     className={`
@@ -62,7 +66,7 @@ function Header ({setNewNoteView, setNewFolderView}) {
                     className={`
                     text-white font-medium bg-stone-700 
                     py-2.5 px-5 mb-5 ml-5
-                    text-center text-sm w-auto 
+                    text-center text-sm w-auto
                     hover:bg-stone-800 
                     focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
                     sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center

@@ -56,7 +56,7 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
     } else {
         return (
             <>
-                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-400 border-2 border-stone-700 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/4 w-11/12 sm:w-6/12 text-white'>
+                <form onSubmit={newNoteView === 'edit' ? editNote : createNote } className='bg-stone-400 border-2 border-stone-700 rounded-lg p-5 absolute sm:top-1/2 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-11/12 sm:w-6/12 text-white'>
                     <div>Enter Content:</div>
                     <button 
                     className='absolute right-2 top-2 hover:bg-red-600 rounded-md px-3' 

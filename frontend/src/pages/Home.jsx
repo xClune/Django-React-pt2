@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
+import { Progress } from '../contexts/ProgressContext'
+
 import { Helmet } from 'react-helmet'
 import api from '../api'
+
 import Header from '../components/Header'
 import NotesList from '../components/NotesList';
 import NewCardForm from '../components/NewCardForm';
@@ -30,7 +33,12 @@ function Home() {
             .then((data) => { setFolders(data) })
             .catch((err) => alert(err))
     }
-    
+
+    const [progress, setProgress] = useState(0);
+    const value = useMemo(
+    () => ({ progress, setProgress }), 
+    [progress]
+    );
 
     return (
         <>
@@ -39,34 +47,41 @@ function Home() {
                 <title>Smart Cards</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Helmet>
+            <Progress.Provider value={value}>
+                <Header 
+                    setNewNoteView={setNewNoteView} 
+                    setNewFolderView={setNewFolderView}
+                />
+            
 
-            <Header 
-            setNewNoteView={setNewNoteView} 
-            setNewFolderView={setNewFolderView}/>
-            <div className='main relative m-0 p-0'>
-                <NewFolderForm 
+                <NotesList 
+                        notes={ notes } 
+                        setNoteId={setNoteId} 
+                        getNotes={ getNotes } 
+                        setNewNoteView={setNewNoteView}
+                        getFolders={ getFolders } 
+                        setNewFolderView={setNewFolderView}
+                        folders={folders}
+                    /> 
+            </Progress.Provider>  
+
+            <NewFolderForm 
                 setNewFolderView={setNewFolderView} 
                 newFolderView={newFolderView} 
                 folders={folders} 
                 setFolders={setFolders}
-                getFolders={getFolders} />
-                <NewCardForm 
+                getFolders={getFolders} 
+            />
+
+            <NewCardForm 
                 folders={folders}
                 getFolders={getFolders} 
                 notes={ notes } 
                 noteId={noteId} 
                 getNotes={ getNotes } 
                 newNoteView={newNoteView} 
-                setNewNoteView={setNewNoteView}/>
-                <NotesList 
-                notes={ notes } 
-                setNoteId={setNoteId} 
-                getNotes={ getNotes } 
                 setNewNoteView={setNewNoteView}
-                getFolders={ getFolders } 
-                setNewFolderView={setNewFolderView}
-                folders={folders}/>   
-            </div>
+            />
         </>
     );
 }

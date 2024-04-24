@@ -40,7 +40,6 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
             .delete(`api/notes/delete/${id}/`)
             .then((res) => {
                 if (!res.status === 204) alert('Failed to delete note.')
-                console.log(`Successfully deleted note id: ${id}`)
                 getNotes()
             })
             .catch((error) => alert(error))
