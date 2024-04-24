@@ -38,7 +38,7 @@ function Note({note, onDelete, setNewNoteView, setNoteId, z}) {
                     className={`delete-note ${hidden} text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-xs mt-2 px-1 py-1 flex-1 text-center dark:bg-stone-600 dark:hover:bg-red-600 dark:focus:ring-stone-800 z-${z} transition-all ease-in duration-300 mx-1`} 
                     onClick={() => {
                         onDelete(note.id)
-                    }}>Sad Delete :(
+                    }}>Delete
                     </button>
                 </div>
                 <a className={`extend self-center text-white hover:cursor-pointer py-0 px-1 mt-5 hover:text-stone-500 rounded-sm text-s hover:bg-white transition-all ease-in duration-300 cursor-pointer`} onClick={toggleInfo}>{

@@ -47,13 +47,12 @@ function Home() {
                 <title>Smart Cards</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Helmet>
+
             <Progress.Provider value={value}>
                 <Header 
                     setNewNoteView={setNewNoteView} 
                     setNewFolderView={setNewFolderView}
                 />
-            
-
                 <NotesList 
                         notes={ notes } 
                         setNoteId={setNoteId} 
@@ -72,7 +71,6 @@ function Home() {
                 setFolders={setFolders}
                 getFolders={getFolders} 
             />
-
             <NewCardForm 
                 folders={folders}
                 getFolders={getFolders} 

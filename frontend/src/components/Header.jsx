@@ -32,51 +32,51 @@ function Header ({setNewNoteView, setNewFolderView}) {
                         SmartCards
                     </div>
                 </div>
-                <progress value={progress} max={100}/>
+                <progress className={`${hidden}`} value={progress} max={100}/>
                 <div className='block lg:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />
                 </div>
-                <div className={`${hidden} hidden lg:block`}>
-                <div className={`buttons flex flex-row items-center justify-end lg:block`}>
-                    <button 
-                    className={`
-                    text-white font-medium bg-stone-700 
-                    py-2.5 px-5 mb-50 ml-5
-                    text-center text-xs sm:text-sm w-auto 
-                    hover:bg-stone-800 
-                    focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
-                    sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
-                    dark:bg-stone-600 dark:hover:bg-stone-300 dark:focus:ring-stone-800 mr-10`}
-                    onClick={() => {setNewFolderView(true)}}>
-                        Add Folder
-                    </button>
-                    <button 
-                    className={`
-                    text-white font-medium bg-stone-700 
-                    py-2.5 px-5 mb-50 ml-5
-                    text-center text-xs sm:text-sm w-auto 
-                    hover:bg-stone-800 
-                    focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
-                    sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
-                    dark:bg-stone-600 dark:hover:bg-stone-300 dark:focus:ring-stone-800 mr-10`}
-                    onClick={() => {setNewNoteView(true)}}>
-                        Add Card
-                    </button>
-                    <button 
-                    className={`
-                    text-white font-medium bg-stone-700 
-                    py-2.5 px-5 mb-5 ml-5
-                    text-center text-sm w-auto
-                    hover:bg-stone-800 
-                    focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
-                    sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
-                    dark:bg-stone-600 dark:hover:bg-stone-300 dark:focus:ring-stone-800 mr-10`}
-                    onClick={() => {
-                        navigate('/login')
-                    }}>
-                        Logout
-                    </button>
-                </div>
+                <div className={`${hidden}`}>
+                    <div className={`buttons flex flex-row items-center justify-end `}>
+                        <button 
+                        className={`hidden lg:block
+                        text-white font-medium bg-stone-700 
+                        py-2.5 px-5 mb-50 ml-5
+                        text-center text-xs sm:text-sm w-auto 
+                        hover:bg-stone-800 
+                        focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
+                        sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
+                        dark:bg-stone-600 dark:hover:bg-stone-300 dark:focus:ring-stone-800 mr-10`}
+                        onClick={() => {setNewFolderView(true)}}>
+                            Add Folder
+                        </button>
+                        <button 
+                        className={`hidden lg:block
+                        text-white font-medium bg-stone-700 
+                        py-2.5 px-5 mb-50 ml-5
+                        text-center text-xs sm:text-sm w-auto 
+                        hover:bg-stone-800 
+                        focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
+                        sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
+                        dark:bg-stone-600 dark:hover:bg-stone-300 dark:focus:ring-stone-800 mr-10`}
+                        onClick={() => {setNewNoteView(true)}}>
+                            Add Card
+                        </button>
+                        <button 
+                        className={`hidden lg:block
+                        text-white font-medium bg-stone-700 
+                        py-2.5 px-5 mb-5 ml-5
+                        text-center text-sm w-auto
+                        hover:bg-stone-800 
+                        focus:ring-4 focus:outline-none focus:ring-stone-300 rounded-lg
+                        sm:w-auto sm:ml-0 sm:mb-0 sm:items-center sm:justify-center
+                        dark:bg-stone-600 dark:hover:bg-stone-300 dark:focus:ring-stone-800 mr-10`}
+                        onClick={() => {
+                            navigate('/login')
+                        }}>
+                            Logout
+                        </button>
+                    </div>
                 </div>
             </header>
             {navMenu === true && 
