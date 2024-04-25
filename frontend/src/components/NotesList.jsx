@@ -49,7 +49,7 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
     else {
     return (
             <>
-                <div className="folder grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 mx-5 sm:mx-10 mt-2">
+                <div className="flex-1 folder grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 mx-5 sm:mx-10 mt-2">
                     {folders.map((folder) => 
                     // make this div draggable with dnd-kit
                     <div className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 self-start w-full rounded-lg'

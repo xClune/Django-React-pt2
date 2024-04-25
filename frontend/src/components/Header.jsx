@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect, useContext } from 'react' 
-import { Progress } from '../contexts/ProgressContext'
+import { Experience } from '../contexts/ExperienceContext'
 import { Level } from '../contexts/LevelContext'
 import Logo from '../assets/Logo'
 import MenuLogo from '../assets/MenuLogo'
@@ -15,7 +15,7 @@ function Header ({setNewNoteView, setNewFolderView}) {
 
     useEffect(() => {pathname === '/' ? setHidden('') : setHidden('hidden')},[])
 
-    const { progress } = useContext(Progress);
+    const { experience } = useContext(Experience);
     const { level } = useContext(Level)
 
     return (
@@ -28,16 +28,16 @@ function Header ({setNewNoteView, setNewFolderView}) {
                 ml-3
                 sm:mx-10 sm:my-10
                 transition-all ease-in duration-200 h-full flex flex-row items-center`}>
-                    <Logo />
+                    <Logo/>
                     <div className='title
                     text-white font-extrabold text-2xl sm:text-3xl hidden md:block'>
                         SmartCards
                     </div>
                 </div>
                 <div className='flex flex-col items-center gap-2'>
-                <h2 className='text-white font-bold'>Current Level:{level}</h2>
-                    <progress className={`${hidden} bg-blue-400`} value={progress} max={100}/>
-                    <h2 className='text-white'>{`${progress}% there!`}</h2>
+                <h2 className='text-white font-bold'>Current Level: {level}</h2>
+                    <progress className={`${hidden} bg-blue-400`} value={experience} max={level*100}/>
+                    <h2 className='text-white'>{`${experience}/${level*100} xp`}</h2>
                 </div>
                 <div className='block lg:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />

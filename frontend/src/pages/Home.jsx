@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
-import { Progress } from '../contexts/ProgressContext'
+import { Experience } from '../contexts/ExperienceContext'
 import { Level } from '../contexts/LevelContext'
 
 import { Helmet } from 'react-helmet'
@@ -9,6 +9,7 @@ import Header from '../components/Header'
 import NotesList from '../components/NotesList';
 import NewCardForm from '../components/NewCardForm';
 import NewFolderForm from '../components/NewFolderForm';
+import Footer from '../components/Footer'
 
 function Home() {
     const [notes, setNotes] = useState([])
@@ -35,8 +36,8 @@ function Home() {
             .catch((err) => alert(err))
     }
 
-    const [progress, setProgress] = useState(() => {
-        return JSON.parse(localStorage.getItem('progress')) || 0
+    const [experience, setExperience] = useState(() => {
+        return JSON.parse(localStorage.getItem('experience')) || 0
       });
 
     const [level, setLevel] = useState(() => {
@@ -44,8 +45,8 @@ function Home() {
     });
 
     const value = useMemo(
-    () => ({ progress, setProgress }), 
-    [progress]
+    () => ({ experience, setExperience }), 
+    [experience]
     );
 
     const levelValue = useMemo(
@@ -54,10 +55,10 @@ function Home() {
         );
 
     useEffect(() => {
-        if (progress >= 100) {setProgress(0); setLevel(level+1)}
+        if (experience >= level*100) {setExperience(0); setLevel(level+1)}
 
-        localStorage.setItem('progress', JSON.stringify(progress));
-      }, [progress]);
+        localStorage.setItem('experience', JSON.stringify(experience));
+      }, [experience]);
 
     useEffect(() => {
         localStorage.setItem('level', JSON.stringify(level));
@@ -72,7 +73,7 @@ function Home() {
             </Helmet>
 
             <Level.Provider value={levelValue}>
-            <Progress.Provider value={value}>
+            <Experience.Provider value={value}>
                 <Header 
                     setNewNoteView={setNewNoteView} 
                     setNewFolderView={setNewFolderView}
@@ -86,8 +87,10 @@ function Home() {
                         setNewFolderView={setNewFolderView}
                         folders={folders}
                     /> 
-            </Progress.Provider>  
+            </Experience.Provider>  
             </Level.Provider>
+            
+            <Footer />
 
             <NewFolderForm 
                 setNewFolderView={setNewFolderView} 

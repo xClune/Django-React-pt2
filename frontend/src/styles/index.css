@@ -8,8 +8,3 @@
       @apply box-border;
     }
   }
-
-body {
-  height: 100vh;
-  background-color: lightgray;
-}

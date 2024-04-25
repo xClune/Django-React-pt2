@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 
-import { Progress } from '../contexts/ProgressContext'
+import { Experience } from '../contexts/ExperienceContext'
 
 
 function Note({note, onDelete, setNewNoteView, setNoteId, z}) {
@@ -11,7 +11,7 @@ function Note({note, onDelete, setNewNoteView, setNoteId, z}) {
         hidden === 'hidden' ? setHidden('') : setHidden('hidden');
     }
 
-    const { progress, setProgress } = useContext(Progress);
+    const { experience, setExperience } = useContext(Experience);
 
     return (
         <>
@@ -24,7 +24,7 @@ function Note({note, onDelete, setNewNoteView, setNoteId, z}) {
                     className={`complete-note ${hidden} text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-xs mt-2 px-1 py-1 flex-1 text-center dark:bg-stone-600 dark:hover:bg-green-600 dark:focus:ring-stone-800 z-${z} transition-all ease-in duration-300 mx-1`} 
                     onClick={() => {
                         // onDelete(note.id);
-                        setProgress(progress+10);
+                        setExperience(experience+10);
                     }}
                     >Happy Delete! :)
                 </button>
