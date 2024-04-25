@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect, useContext } from 'react' 
 import { Progress } from '../contexts/ProgressContext'
+import { Level } from '../contexts/LevelContext'
 import Logo from '../assets/Logo'
 import MenuLogo from '../assets/MenuLogo'
 
@@ -14,7 +15,8 @@ function Header ({setNewNoteView, setNewFolderView}) {
 
     useEffect(() => {pathname === '/' ? setHidden('') : setHidden('hidden')},[])
 
-    const { progress, setProgress } = useContext(Progress);
+    const { progress } = useContext(Progress);
+    const { level } = useContext(Level)
 
     return (
         <>
@@ -32,7 +34,11 @@ function Header ({setNewNoteView, setNewFolderView}) {
                         SmartCards
                     </div>
                 </div>
-                <progress className={`${hidden}`} value={progress} max={100}/>
+                <div className='flex flex-col items-center gap-2'>
+                <h2 className='text-white font-bold'>Current Level:{level}</h2>
+                    <progress className={`${hidden} bg-blue-400`} value={progress} max={100}/>
+                    <h2 className='text-white'>{`${progress}% there!`}</h2>
+                </div>
                 <div className='block lg:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />
                 </div>

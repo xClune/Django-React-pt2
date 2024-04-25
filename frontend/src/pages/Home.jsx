@@ -1,5 +1,6 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Progress } from '../contexts/ProgressContext'
+import { Level } from '../contexts/LevelContext'
 
 import { Helmet } from 'react-helmet'
 import api from '../api'
@@ -34,11 +35,33 @@ function Home() {
             .catch((err) => alert(err))
     }
 
-    const [progress, setProgress] = useState(0);
+    const [progress, setProgress] = useState(() => {
+        return JSON.parse(localStorage.getItem('progress')) || 0
+      });
+
+    const [level, setLevel] = useState(() => {
+        return JSON.parse(localStorage.getItem('level')) || 1
+    });
+
     const value = useMemo(
     () => ({ progress, setProgress }), 
     [progress]
     );
+
+    const levelValue = useMemo(
+        () => ({ level, setLevel }), 
+        [level]
+        );
+
+    useEffect(() => {
+        if (progress >= 100) {setProgress(0); setLevel(level+1)}
+
+        localStorage.setItem('progress', JSON.stringify(progress));
+      }, [progress]);
+
+    useEffect(() => {
+        localStorage.setItem('level', JSON.stringify(level));
+        }, [level]);
 
     return (
         <>
@@ -48,6 +71,7 @@ function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Helmet>
 
+            <Level.Provider value={levelValue}>
             <Progress.Provider value={value}>
                 <Header 
                     setNewNoteView={setNewNoteView} 
@@ -63,6 +87,7 @@ function Home() {
                         folders={folders}
                     /> 
             </Progress.Provider>  
+            </Level.Provider>
 
             <NewFolderForm 
                 setNewFolderView={setNewFolderView} 
