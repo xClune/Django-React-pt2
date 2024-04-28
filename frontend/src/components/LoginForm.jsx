@@ -45,7 +45,7 @@ function LoginForm ({route, method}) {
                 <label htmlFor='username' className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'> 
                 </label>
                 <input 
-                className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
+                className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500'
                 name='username'
                 type='text'
                 value={username}
@@ -57,7 +57,7 @@ function LoginForm ({route, method}) {
                 <label htmlFor="password" className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>    
                 </label>
                 <input 
-                className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500'
+                className='form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500'
                 name='password'
                 type='password'
                 value={password}
@@ -67,11 +67,11 @@ function LoginForm ({route, method}) {
             </div>
             
             {loading && <LoadingIndicator />}
-            <button className='form-button text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800' type='submit'>
+            <button className='form-button text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800' type='submit'>
                 {title}
             </button>
-            {method === "login" ? <a className='text-stone-600 mt-2 cursor-pointer' onClick={switchPage}>Register</a> : 
-            <a className='text-stone-600 mt-2 cursor-pointer' onClick={switchPage}>Login</a>}
+            {method === "login" ? <a className='text-purple-600 mt-2 cursor-pointer' onClick={switchPage}>Register</a> : 
+            <a className='text-purple-600 mt-2 cursor-pointer' onClick={switchPage}>Login</a>}
         </form>
     );
 }

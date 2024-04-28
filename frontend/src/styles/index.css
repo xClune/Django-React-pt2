@@ -7,4 +7,9 @@
     * {
       @apply box-border;
     }
+    #root {
+      @apply h-dvh;
+      @apply flex;
+      @apply flex-col;
+    }
   }
