@@ -20,6 +20,8 @@ function Home() {
     const [newNoteView, setNewNoteView] = useState(false)
     const [newFolderView, setNewFolderView] = useState(false)
 
+    const [stats, setStats] = useState([])
+
     const getNotes = () => {
         api
             .get("api/notes/")
@@ -36,6 +38,15 @@ function Home() {
             .catch((err) => alert(err))
     }
 
+    const getStats = () => {
+        api
+            .get("api/userstats/")
+            .then((res) => res.data)
+            .then((data) => { setStats(data) })
+            .catch((err) => alert(err))
+    }
+
+    // CHANGE TO PULL FROM DATABASE
     const [experience, setExperience] = useState(() => {
         return JSON.parse(localStorage.getItem('experience')) || 0
       });
