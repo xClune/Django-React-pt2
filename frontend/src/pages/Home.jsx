@@ -1,7 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
-import { Experience } from '../contexts/ExperienceContext'
-import { Level } from '../contexts/LevelContext'
-
+import { useState, useEffect, useMemo, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import api from '../api'
 
@@ -11,17 +8,30 @@ import NewCardForm from '../components/NewCardForm';
 import NewFolderForm from '../components/NewFolderForm';
 import Footer from '../components/Footer'
 
+import { ExpContext } from '../contexts/ExperienceContext'
+import { LevelContext } from '../contexts/LevelContext'
+
 function Home() {
+    // create state variables for notes and setNotes
     const [notes, setNotes] = useState([])
     const [noteId, setNoteId] = useState('')
 
+    // create state variables for folders and setFolders
     const [folders, setFolders] = useState([])
 
+    // create state variables for stats and setStats
+    const [stats, setStats] = useState([])
+
+    // useContext to get the value of exp and setExp
+    useEffect(() => {getStats()},[])
+    const [exp, setExp] = useState(0)
+    const [level, setLevel] = useState(1)
+
+    // create state variables for new note and new folder form popups
     const [newNoteView, setNewNoteView] = useState(false)
     const [newFolderView, setNewFolderView] = useState(false)
 
-    const [stats, setStats] = useState([])
-
+    // function to retrieve notes from the backend
     const getNotes = () => {
         api
             .get("api/notes/")
@@ -30,6 +40,7 @@ function Home() {
             .catch((err) => alert(err))
     }
 
+    // function to retrieve folders from the backend
     const getFolders = () => {
         api
             .get("api/folders/")
@@ -38,6 +49,7 @@ function Home() {
             .catch((err) => alert(err))
     }
 
+    // function to retrieve stats from the backend
     const getStats = () => {
         api
             .get("api/userstats/")
@@ -46,34 +58,16 @@ function Home() {
             .catch((err) => alert(err))
     }
 
-    // CHANGE TO PULL FROM DATABASE
-    const [experience, setExperience] = useState(() => {
-        return JSON.parse(localStorage.getItem('experience')) || 0
-      });
-
-    const [level, setLevel] = useState(() => {
-        return JSON.parse(localStorage.getItem('level')) || 1
-    });
-
-    const value = useMemo(
-    () => ({ experience, setExperience }), 
-    [experience]
-    );
-
-    const levelValue = useMemo(
-        () => ({ level, setLevel }), 
-        [level]
-        );
-
-    useEffect(() => {
-        if (experience >= level*100) {setExperience(0); setLevel(level+1)}
-
-        localStorage.setItem('experience', JSON.stringify(experience));
-      }, [experience]);
-
-    useEffect(() => {
-        localStorage.setItem('level', JSON.stringify(level));
-        }, [level]);
+    // function to update stats in the backend
+    const updateStats = () => {
+        api
+            .put(`/api/userstats/edit/${stats[0].id}/`, {exp, level})
+            .then((res) => {
+                if (!res.status === 204) alert('Failed to update note.')
+                getStats();
+            })
+            .catch((error) => alert(error))
+    }
 
     return (
         <>
@@ -83,11 +77,18 @@ function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Helmet>
 
-                <Header 
-                    setNewNoteView={setNewNoteView} 
-                    setNewFolderView={setNewFolderView}
-                />
-                <NotesList 
+            <ExpContext.Provider value={{exp, setExp}}>
+                <LevelContext.Provider value={{level, setLevel}}>
+                    <Header 
+                        stats={ stats }
+                        getStats={ getStats }
+                        setExp={ setExp }
+                        setLevel={ setLevel }
+                        updateStats={ updateStats }
+                        setNewNoteView={setNewNoteView} 
+                        setNewFolderView={setNewFolderView}
+                    />
+                    <NotesList 
                         notes={ notes } 
                         setNoteId={setNoteId} 
                         getNotes={ getNotes } 
@@ -95,10 +96,13 @@ function Home() {
                         getFolders={ getFolders } 
                         setNewFolderView={setNewFolderView}
                         folders={folders}
+                        stats={stats}
+                        setStats={setStats}
+                        updateStats={updateStats}
                     /> 
-            </Experience.Provider>  
-            </Level.Provider>
-            
+                </LevelContext.Provider>
+            </ExpContext.Provider>
+
             <Footer />
 
             <NewFolderForm 

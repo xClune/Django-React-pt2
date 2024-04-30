@@ -81,18 +81,18 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
 class StatListCreate(generics.ListCreateAPIView):
-    serializer_class = FolderSerializer
+    serializer_class = UserStatSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         # get the user
         user = self.request.user
         # filter through database for only those by user
-        return UserStat.objects.filter(author=user)
+        return UserStat.objects.filter(user=user)
 
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(author=self.request.user)
+            serializer.save(user=self.request.user)
         else:
             print(serializer.errors)
 
@@ -102,10 +102,10 @@ class StatEdit(generics.UpdateAPIView):
 
     def get_queryset(self): 
         user = self.request.user 
-        return UserStat.objects.filter(author=user)
+        return UserStat.objects.filter(user=user)
     
     def perform_update(self, serializer):
         if serializer.is_valid():
-            serializer.save(author=self.request.user)
+            serializer.save(user=self.request.user)
         else:
             print(serializer.errors)

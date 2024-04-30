@@ -5,6 +5,7 @@ import '../styles/Form.css'
 function NewFolderForm ({ getFolders, setNewFolderView, newFolderView }) {
     const [folderName, setFolderName] = useState("")
 
+    // create new folder in database through api endpoint
     const createNewFolder = (e) => {
         e.preventDefault()
         api
@@ -18,6 +19,7 @@ function NewFolderForm ({ getFolders, setNewFolderView, newFolderView }) {
             .catch((error) => alert(error))
     }
 
+    // if newFolderView is false, return nothing
     if (!newFolderView) {
         return <></>
     } else {

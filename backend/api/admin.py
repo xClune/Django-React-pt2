@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import Note, Folder, UserStat
 
 class NoteAdmin(admin.ModelAdmin):
-    fields    = ('title', 'folder', 'content', 'created_at', 'author')
+    fields = ('title', 'folder', 'content', 'created_at', 'author')
 
     #list of fields to display in django admin
     list_display = ['title', 'folder', 'content', 'created_at', 'author']

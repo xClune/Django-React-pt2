@@ -21,6 +21,7 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
         }
     }, [newNoteView])
 
+    // create new note in database through api endpoint
     const createNote = (e) => {
         e.preventDefault()
         api
@@ -36,6 +37,7 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
             .catch((error) => alert(error))
     }
 
+    // edit note in database through api endpoint
     const editNote = (e) => {
         e.preventDefault();
         api
@@ -51,6 +53,7 @@ function NewCardForm ({ folders, notes, noteId, getNotes, newNoteView, setNewNot
             .catch((error) => alert(error))
     }
 
+    // if newNoteView is false, return nothing
     if (!newNoteView) {
         return <></>
     } else {

@@ -1,22 +1,29 @@
+
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useState, useEffect, useContext } from 'react' 
-import { Experience } from '../contexts/ExperienceContext'
-import { Level } from '../contexts/LevelContext'
+import { useState, useEffect } from 'react' 
+
 import Logo from '../assets/Logo'
 import MenuLogo from '../assets/MenuLogo'
 
 
-function Header ({setNewNoteView, setNewFolderView}) {
-    const navigate = useNavigate()
+function Header ({setNewNoteView, setNewFolderView, stats, getStats}) {
 
+    // Determine path for header display
     const { pathname } = useLocation();
+
+    // Load stats
+    if (pathname === '/') {useEffect(() => {getStats()},[])}
+
+    // use states different displays
     const [hidden, setHidden] = useState('hidden');
     const [navMenu, setNavMenu] = useState(false);
+    useEffect(() => {
+        pathname === '/' ? setHidden('') : setHidden('hidden')
+    },[])
 
-    useEffect(() => {pathname === '/' ? setHidden('') : setHidden('hidden')},[])
+    // declare navigate function
+    const navigate = useNavigate()
 
-    const { experience } = useContext(Experience);
-    const { level } = useContext(Level)
 
     return (
         <>
@@ -34,14 +41,27 @@ function Header ({setNewNoteView, setNewFolderView}) {
                         SmartCards
                     </div>
                 </div>
-                <div className='flex flex-col items-center gap-2'>
-                <h2 className={`text-white font-bold ${hidden}`}>Current Level: {level}</h2>
-                    <progress className={`${hidden} bg-blue-400`} value={experience} max={level*100}/>
-                    <h2 className={`text-white ${hidden}`}>{`${experience}/${level*100} xp`}</h2>
-                </div>
+
+                {/* Retrieve stats for user */}
+                {stats ? 
+                    (stats.map((stat) => {
+                        return (
+                            <div className='flex flex-col items-center gap-2' key={stat.id}>
+                                <h2 className={`text-white font-bold ${hidden}`}>Current Level: {stat.level}</h2>
+                                <progress className={`${hidden} bg-blue-400`} value={stat.exp} max={stat.level*100}/>
+                                <h2 className={`text-white ${hidden}`}>{`${stat.exp}/${stat.level*100} xp`}</h2>
+                            </div>
+                            )
+                        }
+                    )) : null
+                }
+
+                {/* Hamburger menu on mobile display */}
                 <div className='block lg:hidden mr-3' onClick={() => {setNavMenu(!navMenu)}}>
                     <MenuLogo />
                 </div>
+
+                {/* Buttons for desktop display */}
                 <div className={`${hidden}`}>
                     <div className={`buttons flex flex-row items-center justify-end `}>
                         <button 
@@ -85,6 +105,8 @@ function Header ({setNewNoteView, setNewFolderView}) {
                     </div>
                 </div>
             </header>
+
+            {/* Dropdown for mobile nav menu */}
             {navMenu === true && 
             <div className='w-full h-auto bg-purple-500 flex flex-col items-center -my-1 [&>*]:w-full [&>*]:text-end  [&>*]:text-white [&>*]:border-b [&>*]:border-purple-700'>
                 <div className='py-1 hover:bg-purple-300' onClick={() => {setNewFolderView(true)}}>

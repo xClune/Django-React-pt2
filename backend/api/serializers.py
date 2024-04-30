@@ -33,4 +33,4 @@ class UserStatSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserStat
         fields = ["id", "level", "exp", "user"]
-        extra_kwargs = {"author": {"read_only": True}}
+        extra_kwargs = {"user": {"read_only": True}}

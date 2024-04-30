@@ -1,17 +1,21 @@
 import { useState, useContext } from 'react'
 
-import { Experience } from '../contexts/ExperienceContext'
+import { ExpContext } from '../contexts/ExperienceContext'
+import { LevelContext } from '../contexts/LevelContext'
 
 
-function Note({note, onDelete, setNewNoteView, setNoteId, z}) {
+function Note({note, onDelete, setNewNoteView, setNoteId, z, updateStats}) {
     const formattedDate = new Date(note.created_at).toLocaleDateString("en-US")
 
+    // use state for toggling note content
     const [hidden, setHidden] = useState('hidden')
     const toggleInfo = () => {
         hidden === 'hidden' ? setHidden('') : setHidden('hidden');
     }
 
-    const { experience, setExperience } = useContext(Experience);
+    // receive the exp and level contexts
+    const { exp, setExp } = useContext(ExpContext)
+    const { level, setLevel } = useContext(LevelContext)
 
     return (
         <>
@@ -24,12 +28,17 @@ function Note({note, onDelete, setNewNoteView, setNoteId, z}) {
                     className={`complete-note ${hidden} text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-xs mt-2 px-1 py-1 flex-1 text-center dark:bg-stone-600 dark:hover:bg-green-600 dark:focus:ring-stone-800 z-${z} transition-all ease-in duration-300 mx-1`} 
                     onClick={() => {
                         // onDelete(note.id);
-                        setExperience(experience+10);
+                        if (level*100 <= exp+20) {
+                            setExp(0);
+                            setLevel(level+1);
+                        } else {setExp(exp+20)}
+                        updateStats();
                     }}
-                    >Happy Delete! :)
+                    >
+                        Happy Delete! (+20xp)
                 </button>
                 <div className='flex flex-row items-center justify-between mt-5'>
-                    <button className={`note-edit ${hidden} text-xs text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg mt-2 px-1 py-1 text-center dark:bg-stone-600 dark:hover:bg-blue-600 dark:focus:ring-stone-800 z-${z} transition-all ease-in duration-300 flex-1 mx-1`} 
+                    <button className={`note-edit ${hidden} text-xs text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg mt-2 px-1 py-1 text-center dark:bg-stone-600 dark:hover:bg-blue-600 dark:focus:ring-stone-800 z-${z} transition-all ease-in duration-300 flex-1 mx-1`}
                     onClick={() => {
                         setNoteId(note.id),
                         setNewNoteView('edit')

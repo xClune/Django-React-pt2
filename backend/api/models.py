@@ -24,7 +24,7 @@ class UserStat(models.Model):
     level = models.PositiveSmallIntegerField(default=1)
     exp = models.PositiveSmallIntegerField(default=0)
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE ,related_name="stats")
+    user = models.ForeignKey(User, on_delete=models.CASCADE ,related_name="stats")
 
     # create a signal that creates a UserStat object when a User object is created
     @receiver(post_save, sender=User)

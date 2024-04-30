@@ -3,13 +3,15 @@ import api from '../api'
 import Note from './Note.jsx'
 import '../styles/NoteList.css'
 
-function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, folders}) {
+function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, folders, updateStats}) {
 
+    // useEffect to get current notes and folders on mount
     useEffect(() => {
         getNotes();
         getFolders();
     }, [])
 
+    // Delete folder using id
     const deleteFolder = (id) => {
         let folder;
 
@@ -35,6 +37,7 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
             .catch((error) => alert(error))
     }
 
+    // Delete note using id
     const deleteNote = (id) => {
         api
             .delete(`api/notes/delete/${id}/`)
@@ -45,11 +48,16 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
             .catch((error) => alert(error))
     }
 
+    // If there are no folders, display a message to add a folder
     if (folders.length === 0) {return <div className='flex items-center justify-center w-full h-full'><h1 className='mt-20'>Start by adding a folder!</h1></div>}
+    // Otherwise, display the folders and notes
     else {
     return (
             <>
                 <div className="flex-1 folder grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 mx-5 sm:mx-10 mt-2">
+
+                    {/* Map folders objects, filtering notes beneath if same folder*/}
+
                     {folders.map((folder) => 
                     // make this div draggable with dnd-kit
                     <div className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 self-start w-full rounded-lg'
@@ -65,8 +73,10 @@ function NotesList ({notes, setNoteId, getNotes, setNewNoteView, getFolders, fol
                                 </button>
                                 {folder.folder}
                             </div>
+
+                            {/* If notes same as folder */}
                             {notes.filter((note) => note.folder == folder.folder).map((note, index) => (
-                                <Note note={note} setNoteId={setNoteId} onDelete={deleteNote} key={note.id} z={index*10} setNewNoteView={setNewNoteView}/>
+                                <Note note={note} setNoteId={setNoteId} onDelete={deleteNote} key={note.id} z={index*10} setNewNoteView={setNewNoteView} updateStats={updateStats}/>
                             ))}
                         </div>
                     </div>
