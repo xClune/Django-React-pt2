@@ -83,8 +83,6 @@ function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Helmet>
 
-            <Level.Provider value={levelValue}>
-            <Experience.Provider value={value}>
                 <Header 
                     setNewNoteView={setNewNoteView} 
                     setNewFolderView={setNewFolderView}
