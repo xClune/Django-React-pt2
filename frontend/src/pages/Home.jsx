@@ -82,8 +82,6 @@ function Home() {
                     <Header 
                         stats={ stats }
                         getStats={ getStats }
-                        setExp={ setExp }
-                        setLevel={ setLevel }
                         updateStats={ updateStats }
                         setNewNoteView={setNewNoteView} 
                         setNewFolderView={setNewFolderView}
