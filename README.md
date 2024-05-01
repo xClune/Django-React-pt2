@@ -34,5 +34,11 @@ The ProtectedRoute component is used to wrap any page that we want the user to h
 
 The frontend is relatively simple, it allows for creation of 'cards' and 'folders'. Using tailwindcss and React states the application has been made quite smooth and responsive. Hover effects, state changes on mouse exit and the like. Application will change to suit viewport and was designed using a 'mobile first' approach as can be seen with media queries throughout and the header changing from buttons to a hamburger menu dropdown on mobile views.
 
+LEVELLING
+Levelling was implemented by creating another model in Django for user statistics. These stats are pulled from the backend and displayed by the header component. I wanted to test out the useContext hook so I utilised that for manipulation of the exp and level values before using a function to push them to the backend with a PUT call in updateStats function. Exp will increment on 'Happy Delete' button click until completion and then the progress bar will tick over to the next level which will in turn require more exp.
+
+STYLING
+Various CSS effects where used throughout, including some targeting peers and children, such as the effect that moves cards apart on hover. This was my first Tailwind project and wanted to muck around with a few things, gradients, hover effects etc.
+
 FUTURE DEVELOPMENTS:
 I would like to further develop this application in a variety of ways, adding further models with interactions between. The front end could also be expanded with the home page representing a hub of sorts and the current home being moved to its own 'notes' page. The bulk of this project was spent in the backend and authentification as it was an area I am weak in and wanted to develop. Though I believe the front end work is quite good as well and I believe I have significantly improved my abilities in responsive design throughout.
