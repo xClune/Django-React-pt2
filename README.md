@@ -1,6 +1,6 @@
 # Card-Full-Stack
 
-#### Video Demo: <[URL HERE](https://youtu.be/AahIExB0nE0)>
+#### Video Demo (CS50 FINAL PROJECT SUBMISSION): <[URL HERE](https://youtu.be/AahIExB0nE0)>
 
 #### Description:
 
